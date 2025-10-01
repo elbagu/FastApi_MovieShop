@@ -123,6 +123,4 @@ La API estará disponible en: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000
 
 ## 👨‍💻 Autor
 
-Desarrollado por **Ismael Bazzino** como parte de un proyecto académico de Ingeniería en Computación.  
-Disponible en este repositorio como proyecto personal de portafolio.
-
+Desarrollado por **Ismael Bazzino**
