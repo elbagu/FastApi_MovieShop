@@ -1,98 +1,128 @@
-# FastApi_MovieShop
-Proyecto de API de películas y tiendas con FastAPI y tests automatizados con Pytest.
-🎬 Movie Shop API + Testing
+# Movie Backend & Testing Suite
 
-Este proyecto implementa una API REST en FastAPI para la gestión de películas y tiendas, junto con una suite de tests automatizados en Pytest que validan su correcto funcionamiento.
+Este proyecto es una implementación de una **API RESTful para gestión de películas y tiendas**, junto con una **suite de testing automatizado** desarrollada con `pytest`.  
+Fue realizado como parte de un proyecto académico, pero está diseñado para ser fácilmente extensible como proyecto personal.
 
-🚀 Tecnologías utilizadas
+---
 
-FastAPI → Framework backend para construir la API
+## 📂 Estructura del proyecto
 
-Pydantic → Validación de datos y modelos
-
-Requests → Cliente HTTP para consumir la API desde los tests
-
-Pytest → Framework de testing automatizado
-
-📂 Estructura del proyecto
-.
-├── movie_backend/       # Código de la API (endpoints, modelos, servicios)
-│   ├── main.py          # Punto de entrada de la aplicación
-│   ├── api_routes/      # Definición de rutas de la API
-│   ├── models/          # Modelos y validaciones (Pydantic)
-│   ├── services/        # Lógica de negocio
-│   └── ...
+```
+├── movie_backend/        # Código de la API (FastAPI)
+│   ├── src/              # Módulos principales
+│   ├── models/           # Definiciones de requests/responses
+│   ├── services/         # Lógica de negocio
+│   └── main.py           # Punto de entrada de la API
 │
-├── testing/             # Suite de tests automatizados
-│   ├── conftest.py      # Configuración de Pytest
-│   ├── tests/           # Casos de prueba organizados por recurso
-│   └── ...
+├── testing/              # Tests con pytest
+│   ├── tests/movies/     # Tests relacionados a películas
+│   ├── tests/shops/      # Tests relacionados a tiendas
+│   └── conftest.py       # Fixtures compartidas
 │
-└── README.md            # Documentación del proyecto
+└── README.md             # Documentación del proyecto
+```
 
-⚡ Funcionalidades principales
+---
 
-CRUD de Películas (/movies)
+## 🚀 Funcionalidades principales
 
-CRUD de Tiendas (/shops)
+- CRUD de **Películas** (crear, listar, actualizar, eliminar).  
+- CRUD de **Tiendas**.  
+- Manejo de errores mediante un **modelo de respuesta estándar** (`ErrorResponse`).  
+- Tests automatizados para validar **funcionalidad y errores comunes**.  
 
-Asociación de películas a tiendas
+---
 
-Validación de errores con ErrorResponse (modelo Pydantic)
+## ⚙️ Tecnologías utilizadas
 
-Tests que validan:
+- **Python 3.12**
+- **FastAPI** (backend)
+- **Pydantic** (validación de datos)
+- **Requests** (cliente HTTP interno)
+- **Pytest** (testing)
+- **Uvicorn** (servidor ASGI para correr la API)
 
-Creación, lectura, actualización y borrado de entidades
+---
 
-Manejo de errores (404, inputs inválidos, etc.)
+## ▶️ Cómo ejecutar la API
 
-Integración entre endpoints
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/tuusuario/movie-backend.git
+   cd movie-backend/movie_backend
+   ```
 
-▶️ Cómo ejecutar la API
+2. Crear y activar entorno virtual:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate   # En Linux/Mac
+   venv\Scripts\activate    # En Windows
+   ```
 
-Clonar el repositorio:
+3. Instalar dependencias:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-git clone https://github.com/tu-usuario/movie-shop-api.git
-cd movie-shop-api/movie_backend
+4. Ejecutar la API:
+   ```bash
+   uvicorn src.main:app --reload
+   ```
 
+La API estará disponible en: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
-Instalar dependencias:
+---
 
-pip install -r requirements.txt
+## 🧪 Cómo correr los tests
 
+1. Ir a la carpeta `testing`:
+   ```bash
+   cd testing
+   ```
 
-Levantar el servidor:
+2. Ejecutar pytest:
+   ```bash
+   pytest -v
+   ```
 
-uvicorn main:app --reload
+---
 
+## 📌 Ejemplo de uso (API)
 
-Abrir la documentación interactiva en Swagger:
-👉 http://127.0.0.1:8000/docs
+- Crear una película:
+  ```http
+  POST /movies
+  {
+    "name": "Inception",
+    "director": "Christopher Nolan",
+    "gender": ["Sci-Fi"],
+    "shop": 1
+  }
+  ```
 
-🧪 Cómo ejecutar los tests
+- Respuesta exitosa:
+  ```json
+  {
+    "id": 1,
+    "name": "Inception",
+    "director": "Christopher Nolan",
+    "gender": ["Sci-Fi"],
+    "shop": 1,
+    "rent": false
+  }
+  ```
 
-Desde la carpeta raíz del proyecto:
+- Error (película no encontrada):
+  ```json
+  {
+    "detail": ["Movie Not Found"]
+  }
+  ```
 
-cd testing
-pytest -v
+---
 
-💡 Ejemplo de uso
-Crear una película
-POST /movies
-{
-  "name": "Inception",
-  "genre": "Sci-Fi",
-  "year": 2010
-}
+## 👨‍💻 Autor
 
-Respuesta
-{
-  "id": 1,
-  "name": "Inception",
-  "genre": "Sci-Fi",
-  "year": 2010
-}
+Desarrollado por **Ismael Bazzino** como parte de un proyecto académico de Ingeniería en Computación.  
+Disponible en este repositorio como proyecto personal de portafolio.
 
-📌 Nota
-
-Este proyecto forma parte de un trabajo académico, adaptado para ser publicado como proyecto personal en GitHub.
